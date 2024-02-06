@@ -7,16 +7,20 @@
 # It then plots the data and the line of best fit using matplotlib.
 
 from time import sleep
+
+import os
 import matplotlib.pyplot as plt
 
 # parameters for the gradient descent, tweak them as you see fit
 
 acceptable_error = 0.01 # the error threshold that will stop the gradient descent
 learning_rate = 0.01 # how much the coefficients will be updated in each iteration
-delay = 0.01 # delay between iterations in seconds
+delay = 0.01 # delay between iterations in seconds, purely for visualization purposes
 
-# this is the path to the file with the data on my computer, but probably not on yours. Change it to the path of your file
-userPath = "C:/Users/User1/Desktop/data.txt" 
+# relative path to the data file, located on the desktop
+desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') 
+userPath = desktop + '/data.txt'
+
 
 
 # this function will x and y data points from a file and return them as two separate lists
@@ -51,7 +55,6 @@ def calculate_coefficients(x, y):
     theta_1 = numerator / denominator
     theta_0 = y_mean - theta_1 * x_mean
     return theta_1, theta_0
-
 
 
 # plotting function
@@ -97,14 +100,16 @@ def batch_gradient_descent(x, y, learning_rate=0.01, error_threshold=0.01, delay
         theta_1 = theta_1 - (learning_rate * (1/m) * sum_error_1)
         sleep(delay)
         
-
     return theta_1, theta_0
+
 
 # function-ified so I dont have to repeat the equation over and over again
 def make_prediction(x, theta_1, theta_0):
     
     # this is basically just y = mx + b, where m is theta_1 and b is theta_0.
     return theta_0 + theta_1 * x
+
+
 
 # print data to check if extraction was successful
 x, y = extract_data(userPath)
@@ -123,18 +128,19 @@ theta1, theta0 = batch_gradient_descent(x, y, learning_rate, acceptable_error, d
 print(f"\nTheta_1: {theta1}")
 print(f"Theta_0: {theta0}\n")
 
-# make prediction for a population of 35,000 people
-print("The model predicts a profit of $", make_prediction(3.5, theta1, theta0) * 10000)
+# make prediction for a population of 35,000 and 70,000 people
+prediction1 = make_prediction(3.5, theta1, theta0) * 10000
+prediction2 = make_prediction(7.0, theta1, theta0) * 10000
 
-plot_data("Predicted Profit for 35,000 People", x, y, theta1, theta0)
+# round predictions to two decimal places, since we're dealing with money
+prediction1 = round(prediction1, 2)
+prediction2 = round(prediction2, 2)
 
-# wait for a few seconds between predictions so my eyes do not bleed
-sleep(5)
+# print profit predictions 
+print("The model predicts a profit of $", prediction1, "for a population of 35,000 people")
+print("The model predicts a profit of $", prediction2, "for a population of 70,000 people")
 
-# make prediction for a population of 70,000 people
-print("The model predicts a profit of $", make_prediction(7.0, theta1, theta0) * 10000)
 
-plot_data("Predicted Profit for 70,000 People", x, y, theta1, theta0)
 
 
 
