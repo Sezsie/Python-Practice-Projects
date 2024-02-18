@@ -81,10 +81,13 @@ def batch_gradient_descent(x, y, learning_rate=0.01, error_threshold=0.01, delay
         mse = 0
         for i in range(m):
             prediction = theta_0 + theta_1 * x[i]
+            
             error = prediction - y[i]
             sum_error_0 += error
             sum_error_1 += error * x[i]
             mse += error ** 2
+            
+            
         mse /= m
         print(f"CURRENT ERROR: {abs(previous_mse - mse)}")
 
@@ -92,7 +95,7 @@ def batch_gradient_descent(x, y, learning_rate=0.01, error_threshold=0.01, delay
             print(f"FINAL ERROR: {abs(previous_mse - mse)}")
             break
 
-        previous_mse = mse  # Update the previous_mse for the next iteration
+        previous_mse = mse  # update the previous_mse for the next iteration
         theta_0 = theta_0 - (learning_rate * (1/m) * sum_error_0)
         theta_1 = theta_1 - (learning_rate * (1/m) * sum_error_1)
         sleep(delay)
@@ -100,11 +103,12 @@ def batch_gradient_descent(x, y, learning_rate=0.01, error_threshold=0.01, delay
 
     return theta_1, theta_0
 
+
 # function-ified so I dont have to repeat the equation over and over again
 def make_prediction(x, theta_1, theta_0):
-    
     # this is basically just y = mx + b, where m is theta_1 and b is theta_0.
     return theta_0 + theta_1 * x
+
 
 # print data to check if extraction was successful
 x, y = extract_data(userPath)

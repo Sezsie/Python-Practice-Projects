@@ -1,0 +1,28 @@
+{
+  "user_requests": {
+    "request2": "Can you open Firefox for me?",
+    "request3": "It's too quiet. Play some music?",
+    "request4": "I'm looking for a pizza recipe. Can you find one?",
+    "request5": "Need to chill. Can you set a timer for 10 minutes?",
+    "request6": "This room's a bit dark. Can you adjust the screen brightness?",
+    "request7": "I have a meeting. Can you remind me 15 minutes before?",
+    "request8": "Check if my system is up to date.",
+    "request9": "It's getting cluttered. Can you clean up temporary files?",
+    "request10": "I need the current IP address of my machine.",
+    "request11": "Mount the external drive I just plugged in."
+  },
+  
+  "command_phrases": {
+    "command2": "open firefox",
+    "command3": "play music",
+    "command4": "find pizza recipe",
+    "command5": "start timer 10 minutes",
+    "command6": "adjust screen brightness",
+    "command7": "set reminder 15 minutes",
+    "command8": "check system updates",
+    "command9": "clean temporary files",
+    "command10": "show ip address",
+    "command11": "mount external drive"
+  }
+}
+
