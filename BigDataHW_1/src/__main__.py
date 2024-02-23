@@ -44,7 +44,9 @@ iris_corr_matrix = iris_numerical.corr() # the correlation matrix of the iris da
 # add the target column to the dataFrame
 iris_dataframe['species'] = pd.Categorical.from_codes(y, names)
 
+
 # 1A_i: Display the correlation matrix of the iris dataset as a heatmap
+plt.figure(figsize=(10, 8))
 sns.heatmap(iris_corr_matrix, annot=True, cmap='coolwarm')
 plt.show()
 
