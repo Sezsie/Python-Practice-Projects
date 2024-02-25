@@ -128,8 +128,6 @@ for generation in range(lifetimes):
 # NOTE: this only really provides insight if lifetimes > 1 and the determinism is set to none, which results in different splits each time.
 # the only reason this code is here is because I was curious to see if the model was consistently better with one split configuration over the other.
 
-
-
  # separate the RMSE values for each split configuration
 rmse_80_20 = rmse_list[0::2]  # this is 80% of the data
 rmse_20_80 = rmse_list[1::2]  # this is 20% of the data
@@ -163,6 +161,4 @@ plt.legend()
 
 # show the plot
 plt.tight_layout()
-plt.show()   
-
-
+plt.show()
