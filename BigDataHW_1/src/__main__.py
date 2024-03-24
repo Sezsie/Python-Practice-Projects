@@ -2,8 +2,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import numpy as np 
-from math import sqrt
+from time import sleep
 
+from math import sqrt
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn import datasets
@@ -51,6 +52,8 @@ iris_corr_matrix = iris_numerical.corr() # the correlation matrix of the iris da
 
 # add the target column to the dataFrame
 iris_dataframe['species'] = pd.Categorical.from_codes(y, names)
+print(iris_dataframe.head())
+
 
 # 1A_i: Display the correlation matrix of the iris dataset as a heatmap
 plt.figure(figsize=(10, 8))
@@ -75,7 +78,7 @@ plt.clf()
 
 # SETTINGS FOR THE LINEAR REGRESSION MODEL
 determinism = None  # the random state for the train_test_split function
-lifetimes = 10  # the number of times the model will be trained and tested
+lifetimes = 25  # the number of times the model will be trained and tested
 
 # PLOT SETTINGS
 colors = ['b', 'g']  # colors for 80-20 and 20-80 split respectively
