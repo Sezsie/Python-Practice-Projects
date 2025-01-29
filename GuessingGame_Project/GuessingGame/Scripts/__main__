@@ -1,0 +1,83 @@
+import random
+
+#############################################################################################################
+# DOCUMENTATION
+#############################################################################################################
+
+# AUTHOR: Garrett Thrower
+# DATE CREATED: 2024-15-01
+# FUNCTION: A simple guessing game. The user has 10 guesses to guess the correct number between 1 and 1000.
+# PURPOSE: To practice using Python. This is my second Python program.
+
+#############################################################################################################
+
+
+# the bounds of the random number
+boundLow = 1
+boundHigh = 1000
+
+# the number of guesses the user has
+guessCount = 10
+
+def checkGuess(userInputS, correctAnswer, guesses):
+    while True:
+        try:
+            userInput = int(userInputS)
+            if userInput < boundLow or userInput > boundHigh:
+                raise ValueError(f"Number out of range. Please enter a number between {boundLow} and {boundHigh}.")
+        except ValueError as e:
+            print(e)
+            userInputS = input("Please enter a number: ")
+        else:
+            break
+
+    if userInput == correctAnswer:
+        print("Congratulations! You guessed the number!\n")
+        print(f"Completed with {guesses} guesses left. \n")
+        return True
+
+    elif userInput > correctAnswer:
+        print(f"Your guess, {userInputS}, was too high. Please try again.")
+
+    elif userInput < correctAnswer:
+        print(f"Your guess, {userInputS}, was too low. Please try again.")
+
+    return False
+
+
+def promptUserForRestart():
+    while True:
+        print("Would you like to play again? (y/n)")
+        userResponse = input()
+        if userResponse.lower() == "y":
+            return True
+        elif userResponse.lower() == "n":
+            print("Thanks for playing! Goodbye!")
+            exit()
+        else:
+            print("Invalid input. Please enter y or n.")
+
+
+def main():
+    correctAnswer = random.randint(boundLow, boundHigh)
+    guesses = 10
+    
+    print(f"Welcome to the Guess the Number game! You have {guesses} tries to correctly guess a number between {boundLow} & {boundHigh}. Good luck!")
+    
+    while guesses > 0:
+        userInputS = input("Please enter a number: ")
+        if checkGuess(userInputS, correctAnswer, guesses):
+            if not promptUserForRestart():
+                break
+            correctAnswer = random.randint(1, 1000)
+            guesses = 10
+        else:
+            guesses -= 1
+            print(f"You have {str(guesses)} guesses left.\n")     
+              
+    print(f"Too bad! You ran out of guesses. The correct answer was {correctAnswer}. \n")
+    promptUserForRestart()
+
+
+if __name__ == "__main__":
+    main()
